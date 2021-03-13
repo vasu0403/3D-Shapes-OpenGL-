@@ -17,19 +17,17 @@ typedef tree <ll, null_type, less <ll>, rb_tree_tag, tree_order_statistics_node_
 // order_of_key(val): returns the number of values less than val
 // find_by_order(k): returns an iterator to the kth largest element (0-based)
 
-struct coordinate {
-	double x, y, z;
-	coordinate(double x, double y, double z) {
-		this->x = x;
-		this->y = y;
-		this->z = z;
-	}
-};
+
 double dx[] = {-1, 1, 1, -1};
 double dy[] = {-1, -1, 1, 1};
 
+
 void print_vertex(coordinate v, int color_ind) {
-	cout << "\t" << v.x << ", " << v.y << ", " << v.z << ", " << color[color_ind][0] << ", " << color[color_ind][1] << ", " << color[color_ind][2] << ",\n";
+    fstream f_object;
+    f_object.open("elongatedSquarePyramid.txt", ios::app);
+	f_object << v.x << "\n" << v.y << "\n" << v.z << "\n" << color[color_ind][0] << "\n" << color[color_ind][1] << "\n" << color[color_ind][2] << "\n";
+    f_object.close();
+
 }
 
 void print_triangle(coordinate v1, coordinate v2, coordinate v3, int color_ind) {
@@ -37,10 +35,14 @@ void print_triangle(coordinate v1, coordinate v2, coordinate v3, int color_ind) 
 	print_vertex(v2, color_ind);
 	print_vertex(v3, color_ind);
 }
+
 int main(void)
 {
 	ios_base::sync_with_stdio(false);
     cin.tie(NULL);
+    fstream f_object;
+    f_object.open("elongatedSquarePyramid.txt", ios::out);
+    f_object.close();
     vector<coordinate> upper_square;
     vector<coordinate> lower_square;
     double length = 1.0;
@@ -55,7 +57,6 @@ int main(void)
     coordinate upper_vertex = coordinate(0, 0, 0.5 + (sqrt(2.0) / 4));
     coordinate lower_vertex = coordinate(0, 0, -0.5 - (sqrt(2.0) / 4));
 
-    cout << "float vertices[] = {\n";
 
     // upper pyramid
     print_triangle(upper_square[0], upper_square[1], upper_vertex, ACID_GREEN);
@@ -82,5 +83,4 @@ int main(void)
     print_triangle(upper_square[3], lower_square[3], lower_square[0], WHITE);
     print_triangle(upper_square[3], upper_square[0], lower_square[0], WHITE);
 
-    cout << "};\n";
 }

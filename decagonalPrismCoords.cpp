@@ -1,6 +1,7 @@
 #include "bits/stdc++.h"
 #include "ext/pb_ds/assoc_container.hpp"
 #include "ext/pb_ds/tree_policy.hpp"
+#include "colors.h"
 
 using namespace std;
 using namespace __gnu_pbds;
@@ -12,27 +13,41 @@ using namespace __gnu_pbds;
 #define ff first
 #define ss second
 #define all(a) a.begin(),a.end()
-
+int c = 0;
 typedef tree <ll, null_type, less <ll>, rb_tree_tag, tree_order_statistics_node_update> ordered_set;
 // order_of_key(val): returns the number of values less than val
 // find_by_order(k): returns an iterator to the kth largest element (0-based)
 double PI = 3.141592653589793238;
 double angle = PI / 5;
-void print(vector<double> v, double r, double g, double b) {
-	for(double d: v) {
-		cout << d << ", ";
-	}
-	cout << r << ", " << g << ", " << b << ", \n";
+
+
+void print_vertex(coordinate v, int color_ind) {
+    fstream f_object;
+    f_object.open("decagonalPrism.txt", ios::app);
+	f_object << v.x << "\n" << v.y << "\n" << v.z << "\n" << color[color_ind][0] << "\n" << color[color_ind][1] << "\n" << color[color_ind][2] << "\n";
+    f_object.close();
+
 }
+
+void print_triangle(coordinate v1, coordinate v2, coordinate v3, int color_ind) {
+	c++;
+	print_vertex(v1, color_ind);
+	print_vertex(v2, color_ind);
+	print_vertex(v3, color_ind);
+}
+
 int main(void)
 {
 	srand(time(NULL));
 	ios_base::sync_with_stdio(false);
     cin.tie(NULL);
+	fstream f_object;
+	f_object.open("decagonalPrism.txt", ios::out);
+	f_object.close();
     double length = (double)0.4;
     double x1 = 0, y1 = 0;
     double vx = length, vy = 0;
-    vector<vector<double>> vertices;
+    vector<coordinate> vertices;
     double up = (double) 0.2;
     vertices.pb({x1, y1, up});
     for(int i = 0; i < 9;i++) {
@@ -42,48 +57,27 @@ int main(void)
     	double ty = vx*sin(angle) + vy*cos(angle);
     	vx = tx;
     	vy = ty; 
-    	vertices.pb({x1, y1, up});
+    	vertices.push_back(coordinate(x1, y1, up));
     }
     for(int i = 0; i < 10;i++) {
-    	vertices.pb({vertices[i][0], vertices[i][1], -up});
+    	vertices.push_back(coordinate(vertices[i].x, vertices[i].y, -up));
     }
-    cout << "float vertices[] = {\n";
-    for(int i = 2; i < 10; i++) {\
-		cout << "\t";print(vertices[0], 1, 0, 0);
-		cout << "\t";print(vertices[i], 1, 0, 0);
-		cout << "\t";print(vertices[i - 1], 1, 0, 0);
+    for(int i = 2; i < 10; i++) {
+		print_triangle(vertices[0], vertices[i], vertices[i - 1], RED);
     }
     for(int i = 12; i < 20; i++) {
-		cout << "\t";print(vertices[10], 1, 0, 0);
-		cout << "\t";print(vertices[i], 1, 0, 0);
-		cout << "\t";print(vertices[i - 1], 1, 0, 0);
+		print_triangle(vertices[10], vertices[i], vertices[i - 1], RED);
     }
-    double colors[10][3];
-    colors[0][0] = 0.0, colors[0][1] = 1.0, colors[0][2] = 0.0;
-    colors[1][0] = 0.0, colors[1][1] = 0.0, colors[1][2] = 0.5;
-    colors[2][0] = 0.0, colors[2][1] = 1.0, colors[2][2] = 1.0;
-    colors[3][0] = 0.0, colors[3][1] = 0.0, colors[3][2] = 1.0;
-    colors[4][0] = 1.0, colors[4][1] = 0.0, colors[4][2] = 1.0;
-    colors[5][0] = 1.0, colors[5][1] = 1.0, colors[5][2] = 1.0;
-    colors[6][0] = 0.5, colors[6][1] = 0.0, colors[6][2] = 1.0;
-    colors[7][0] = 0.8, colors[7][1] = 0.8, colors[7][2] = 0.8;
-    colors[8][0] = 0.0, colors[8][1] = 0.5, colors[8][2] = 0.5;
-    colors[9][0] = 0.5, colors[9][1] = 0.5, colors[9][2] = 0.0;
-
+	int which[] = {BLUE, CYAN, ARCTIC_LIME, DARK_YELLOW, ACID_GREEN, DARK_GREEN, LIGHT_GREY, MAGENTA, DARK_BLUE, WHITE};
     for(int i = 0; i < 10; i++) {
     	int v1 = i, v2 = i + 1;
     	int v3 = v1 + 10, v4 = v2 + 10;
     	if(i == 9) {
     		v2 = 0, v4 = 10;
     	}
-		double red, green, blue;
-		red = colors[i][0], green = colors[i][1], blue = colors[i][2];
-    	cout << "\t";print(vertices[v1], red, green, blue);
-		cout << "\t";print(vertices[v3], red, green, blue);
-		cout << "\t";print(vertices[v4], red, green, blue);
-		cout << "\t";print(vertices[v1], red, green, blue);
-		cout << "\t";print(vertices[v4], red, green, blue);
-		cout << "\t";print(vertices[v2], red, green, blue);
+		print_triangle(vertices[v1], vertices[v3], vertices[v4], which[i]);
+		print_triangle(vertices[v1], vertices[v2], vertices[v4], which[i]);
+
     }
-    cout << "};\n";
+	cout << c << endl;
 }
