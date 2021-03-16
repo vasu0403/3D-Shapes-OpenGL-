@@ -252,6 +252,7 @@ int main() {
         glfwPollEvents();
 
         glm::vec4 currentPosition = translate_shape * object_starting_position;
+        cout << cameraPos.x << " " << cameraPos.y << " " << cameraPos.z << "\n";
     }
     glfwTerminate();
     return 0;
