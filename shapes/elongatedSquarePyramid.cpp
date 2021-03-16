@@ -59,28 +59,28 @@ int main(void)
 
 
     // upper pyramid
-    print_triangle(upper_square[0], upper_square[1], upper_vertex, ACID_GREEN);
-    print_triangle(upper_square[1], upper_square[2], upper_vertex, ARCTIC_LIME);
-    print_triangle(upper_square[2], upper_square[3], upper_vertex, CHINESE_YELLOW);
-    print_triangle(upper_square[3], upper_square[0], upper_vertex, CHARTREUSE);
+    print_triangle(upper_square[0], upper_square[1], upper_vertex, MAGENTA);
+    print_triangle(upper_square[1], upper_square[2], upper_vertex, WHITE);
+    print_triangle(upper_square[2], upper_square[3], upper_vertex, MAGENTA);
+    print_triangle(upper_square[3], upper_square[0], upper_vertex, WHITE);
 
     // lower pyramid
-    print_triangle(lower_square[0], lower_square[1], lower_vertex, GREEN);
-    print_triangle(lower_square[1], lower_square[2], lower_vertex, DARK_YELLOW);
+    print_triangle(lower_square[0], lower_square[1], lower_vertex, YELLOW);
+    print_triangle(lower_square[1], lower_square[2], lower_vertex, BLACK);
     print_triangle(lower_square[2], lower_square[3], lower_vertex, YELLOW);
-    print_triangle(lower_square[3], lower_square[0], lower_vertex, DARK_GREEN);
+    print_triangle(lower_square[3], lower_square[0], lower_vertex, BLACK);
 
     // square faces
     print_triangle(upper_square[0], lower_square[0], lower_square[1], RED);
     print_triangle(upper_square[0], upper_square[1], lower_square[1], RED);
 
-    print_triangle(upper_square[1], lower_square[1], lower_square[2], WHITE);
-    print_triangle(upper_square[1], upper_square[2], lower_square[2], WHITE);
+    print_triangle(upper_square[1], lower_square[1], lower_square[2], GREEN);
+    print_triangle(upper_square[1], upper_square[2], lower_square[2], GREEN);
 
     print_triangle(upper_square[2], lower_square[2], lower_square[3], RED);
     print_triangle(upper_square[2], upper_square[3], lower_square[3], RED);
 
-    print_triangle(upper_square[3], lower_square[3], lower_square[0], WHITE);
-    print_triangle(upper_square[3], upper_square[0], lower_square[0], WHITE);
+    print_triangle(upper_square[3], lower_square[3], lower_square[0], GREEN);
+    print_triangle(upper_square[3], upper_square[0], lower_square[0], GREEN);
 
 }

@@ -52,7 +52,7 @@ int main(void)
         coordinate next = coordinate(cos(angle) * last.x - sin(angle) * last.y, sin(angle) * last.x + cos(angle) * last.y, 0);
         hexagon.push_back(next);
     }
-    int colors[] = {RED, GREEN, BLUE, CYAN, MAGENTA, YELLOW, WHITE, BLACK, DARK_RED, DARK_GREEN, DARK_BLUE, DARK_CYAN};
+    int colors[] = {MAGENTA, YELLOW, WHITE, BLACK, MAGENTA, YELLOW, WHITE, BLACK, MAGENTA, YELLOW, WHITE, BLACK};
     for(int i = 0; i < 6; i++) {
         int ind1 = i;
         int ind2 = (i + 1) % 6;

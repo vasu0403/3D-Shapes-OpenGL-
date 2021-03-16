@@ -58,8 +58,8 @@ Shader::Shader(const char* vertexPath, const char * fragmentPath) {
     vShaderFile.exceptions (std::ifstream::failbit | std::ifstream::badbit);
     fShaderFile.exceptions (std::ifstream::failbit | std::ifstream::badbit);
     try {
-        vShaderFile.open("/home/vasu/college/3rd_year/6th_sem/Computer_Graphics/A0/source/shader.vs", ios::in);
-        fShaderFile.open("/home/vasu/college/3rd_year/6th_sem/Computer_Graphics/A0/source/shader.fs", ios::in);
+        vShaderFile.open("../source/shader.vs", ios::in);
+        fShaderFile.open("../source/shader.fs", ios::in);
         
         stringstream vShaderStream, fShaderStream;
 

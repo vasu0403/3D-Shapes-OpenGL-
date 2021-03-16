@@ -25,7 +25,6 @@ void print_vertex(coordinate v, int color_ind) {
     fstream f_object;
     f_object.open("decagonalPrism.txt", ios::app);
 	f_object << v.x << "\n" << v.y << "\n" << v.z << "\n" << color[color_ind][0] << "\n" << color[color_ind][1] << "\n" << color[color_ind][2] << "\n";
-    // cout << v.x << "\n" << v.y << "\n" << v.z << "\n" << color[color_ind][0] << "\n" << color[color_ind][1] << "\n" << color[color_ind][2] << "\n";
     f_object.close();
 
 }
@@ -69,8 +68,7 @@ int main(void)
     for(int i = 12; i < 20; i++) {
 		print_triangle(vertices[10], vertices[i], vertices[i - 1], RED);
     }
-	int which[] = {BLUE, CYAN, ARCTIC_LIME, DARK_YELLOW, ACID_GREEN, DARK_GREEN, LIGHT_GREY, MAGENTA, DARK_BLUE, WHITE};
-    // int which[] = {BLUE, YELLOW, BLUE, YELLOW, BLUE, YELLOW, BLUE, YELLOW, BLUE, YELLOW};
+	int which[] = {CYAN, GREEN, CYAN, YELLOW, CYAN, DARK_GREEN, CYAN, DARK_YELLOW, CYAN, ACID_GREEN};
 
     for(int i = 0; i < 10; i++) {
     	int v1 = i, v2 = i + 1;
@@ -82,5 +80,4 @@ int main(void)
 		print_triangle(vertices[v1], vertices[v2], vertices[v4], which[i]);
 
     }
-	cout << c << endl;
 }
